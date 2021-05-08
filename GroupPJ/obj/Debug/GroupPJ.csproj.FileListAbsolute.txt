@@ -1,0 +1,13 @@
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\bin\Debug\GroupPJ.exe.config
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\bin\Debug\GroupPJ.exe
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\bin\Debug\GroupPJ.pdb
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\obj\Debug\GroupPJ.csprojAssemblyReference.cache
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\obj\Debug\GroupPJ.FLogin.resources
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\obj\Debug\GroupPJ.Properties.Resources.resources
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\obj\Debug\GroupPJ.csproj.GenerateResource.cache
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\obj\Debug\GroupPJ.csproj.CoreCompileInputs.cache
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\obj\Debug\GroupPJ.exe
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\obj\Debug\GroupPJ.pdb
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\obj\Debug\GroupPJ.AccountProfile.resources
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\obj\Debug\GroupPJ.FManager.resources
+C:\Users\phuho\source\repos\GroupPJ\GroupPJ\obj\Debug\GroupPJ.Admin.resources
