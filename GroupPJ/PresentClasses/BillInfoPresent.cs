@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GroupPJ.Classes;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace GroupPJ.PresentClasses
 {
@@ -20,19 +21,12 @@ namespace GroupPJ.PresentClasses
 
         private BillInfoPresent() { }
 
-        public void DeleteBillInfoByFoodID(int id)
-        {
-            ClsDatabase.OpenConnection();
-            SqlCommand command = new SqlCommand("DELETE FROM Bill_Info WHERE ID_BILL = '" + id + "'", ClsDatabase.con);
-            command.ExecuteNonQuery();
-            ClsDatabase.CloseConnection();
-        }
         public List<BillInfo> GetListBillInfo(int id)
         {
             List<BillInfo> listBillInfo = new List<BillInfo>();
             ClsDatabase.OpenConnection();
 
-            SqlCommand command = new SqlCommand("SELECT * FROM Bill_Info WHERE ID_BILL = '" + id + "'", ClsDatabase.con);
+            SqlCommand command = new SqlCommand("SELECT * FROM Bill_Infor WHERE ID_BILL = " + id, ClsDatabase.con);
             SqlDataReader rd = command.ExecuteReader();
             while (rd.Read())
             {
@@ -45,16 +39,17 @@ namespace GroupPJ.PresentClasses
 
         public void InsertBillInfo(int idBill, int idDrink, int count)
         {
-            try
-            {
-                ClsDatabase.OpenConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO Bill_Info (ID_BILL, ID_DRINKS, COUNT) VALUES ('"+ idBill+"', '"+idDrink+"', '" + count + "')", ClsDatabase.con);
-                command.ExecuteNonQuery();
-                ClsDatabase.CloseConnection();
-            }
-            catch (Exception)
-            {
-            }
+            ClsDatabase.OpenConnection();
+            SqlCommand command = new SqlCommand("InsertBillInfor", ClsDatabase.con);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(
+                new SqlParameter("@idBill", idBill));
+            command.Parameters.Add(
+                new SqlParameter("@idDrink", idDrink));
+            command.Parameters.Add(
+                new SqlParameter("@count", count));
+            command.ExecuteNonQuery();
+            ClsDatabase.CloseConnection();
         }
     }
 }

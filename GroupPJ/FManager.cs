@@ -18,14 +18,15 @@ namespace GroupPJ
     {
         string tendangnhap = "";
         int type = 0;
-        public FManager(string tenDangNhap, int type)
+        string tenhienthi = "";
+        public FManager(string tenDangNhap, int type, string tenhienthi)
         {
             InitializeComponent();
             this.type = type;
             this.tendangnhap = tenDangNhap;
-            lbName.Text = tenDangNhap;
+            this.tenhienthi = tenhienthi;
+            lbName.Text = tenhienthi;
             LoadTable();
-            LoadComboboxTable(cbbChuyenBan);
             LoadDrinks(cbbDoUong);
         }
         void LoadTable()
@@ -78,11 +79,6 @@ namespace GroupPJ
 
         }
 
-        void LoadComboboxTable(ComboBox cb)
-        {
-            cb.DataSource = TablePresent.Instance.LoadTablesList();
-            cb.DisplayMember = "Name";
-        }
         void LoadDrinks(ComboBox cb)
         {
             
@@ -97,7 +93,7 @@ namespace GroupPJ
 
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccountProfile acc = new AccountProfile(tendangnhap);
+            AccountProfile acc = new AccountProfile(tendangnhap, tenhienthi);
             acc.ShowDialog();
         }
 
@@ -144,8 +140,26 @@ namespace GroupPJ
             }
 
             ShowBill(table.ID);
-
             LoadTable();
+        }
+
+        private void btnThanhToan_Click(object sender, EventArgs e)
+        {
+            Table table = lvBill.Tag as Table;
+            int idBill = BillPresent.Instance.GetUncheckBillIDByTableID(table.ID);
+            double finalPrice = Convert.ToDouble(lbTotal.Text);
+            if(idBill != -1)
+            {
+                if(MessageBox.Show("Thanh toán hóa đơn "+table.Name,"Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                {
+                    BillPresent.Instance.CheckOut(idBill, (float)finalPrice);
+                    MessageBox.Show("Thanh toán "+table.Name + "\n"
+                        + "Tổng tiền: " + finalPrice, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ShowBill(table.ID);
+                    LoadTable();
+                }
+            }
+
         }
     }
 }

@@ -36,9 +36,11 @@ namespace GroupPJ
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lvBill = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnChuyenBan = new System.Windows.Forms.Button();
-            this.cbbChuyenBan = new System.Windows.Forms.ComboBox();
             this.btnThanhToan = new System.Windows.Forms.Button();
             this.cbbDoUong = new System.Windows.Forms.ComboBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -119,42 +121,47 @@ namespace GroupPJ
             // 
             // lvBill
             // 
+            this.lvBill.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.lvBill.GridLines = true;
             this.lvBill.HideSelection = false;
             this.lvBill.Location = new System.Drawing.Point(5, 0);
             this.lvBill.Name = "lvBill";
             this.lvBill.Size = new System.Drawing.Size(348, 239);
             this.lvBill.TabIndex = 0;
             this.lvBill.UseCompatibleStateImageBehavior = false;
+            this.lvBill.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Đồ uống";
+            this.columnHeader1.Width = 113;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Số lượng";
+            this.columnHeader2.Width = 62;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Giá";
+            this.columnHeader3.Width = 80;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Tổng giá";
+            this.columnHeader4.Width = 87;
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btnChuyenBan);
-            this.panel3.Controls.Add(this.cbbChuyenBan);
             this.panel3.Controls.Add(this.btnThanhToan);
             this.panel3.Location = new System.Drawing.Point(378, 384);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(355, 74);
             this.panel3.TabIndex = 3;
-            // 
-            // btnChuyenBan
-            // 
-            this.btnChuyenBan.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnChuyenBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChuyenBan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnChuyenBan.Location = new System.Drawing.Point(4, 3);
-            this.btnChuyenBan.Name = "btnChuyenBan";
-            this.btnChuyenBan.Size = new System.Drawing.Size(103, 44);
-            this.btnChuyenBan.TabIndex = 0;
-            this.btnChuyenBan.Text = "Chuyển bàn";
-            this.btnChuyenBan.UseVisualStyleBackColor = false;
-            // 
-            // cbbChuyenBan
-            // 
-            this.cbbChuyenBan.FormattingEnabled = true;
-            this.cbbChuyenBan.Location = new System.Drawing.Point(4, 50);
-            this.cbbChuyenBan.Name = "cbbChuyenBan";
-            this.cbbChuyenBan.Size = new System.Drawing.Size(103, 21);
-            this.cbbChuyenBan.TabIndex = 5;
             // 
             // btnThanhToan
             // 
@@ -162,13 +169,15 @@ namespace GroupPJ
             this.btnThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThanhToan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnThanhToan.Image = global::GroupPJ.Properties.Resources.coin_us_dollar_icon__1_;
-            this.btnThanhToan.Location = new System.Drawing.Point(134, 3);
+            this.btnThanhToan.Location = new System.Drawing.Point(8, 3);
             this.btnThanhToan.Name = "btnThanhToan";
-            this.btnThanhToan.Size = new System.Drawing.Size(215, 68);
+            this.btnThanhToan.Size = new System.Drawing.Size(341, 68);
             this.btnThanhToan.TabIndex = 0;
             this.btnThanhToan.Text = "Thanh Toán";
+            this.btnThanhToan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnThanhToan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnThanhToan.UseVisualStyleBackColor = false;
+            this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
             // 
             // cbbDoUong
             // 
@@ -303,8 +312,6 @@ namespace GroupPJ
         private System.Windows.Forms.ListView lvBill;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button btnChuyenBan;
-        private System.Windows.Forms.ComboBox cbbChuyenBan;
         private System.Windows.Forms.Button btnThanhToan;
         private System.Windows.Forms.NumericUpDown numThem;
         private System.Windows.Forms.Button btnThem;
@@ -313,5 +320,9 @@ namespace GroupPJ
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbTotal;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

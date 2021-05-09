@@ -14,11 +14,12 @@ namespace GroupPJ
     public partial class AccountProfile : Form
     {
         string tenDangNhap = "";
-        public AccountProfile(string tendangnhap)
+        public AccountProfile(string tendangnhap, string tenhienthi)
         {
             InitializeComponent();
             this.tenDangNhap = tendangnhap;
             txtTenDangNhap.Text = tendangnhap;
+            txtTenHienThi.Text = tenhienthi;
             txtPwd.Focus();
         }
 
@@ -34,7 +35,8 @@ namespace GroupPJ
             string newpwd = txtNewPwd.Text;
             string renewpwd = txtReNewPwd.Text;
             string username = tenDangNhap;
-            if(newpwd == renewpwd)
+            string name = txtTenHienThi.Text;
+            if (newpwd == renewpwd)
             {
                 try
                 {
@@ -43,7 +45,7 @@ namespace GroupPJ
                     if (rd.Read())
                     {
                         ClsDatabase.OpenConnection();
-                        SqlCommand command1 = new SqlCommand("UPDATE Accounts SET ACC_PWD = '" + newpwd + "' WHERE ACC_USERNAME = '" + username + "'", ClsDatabase.con);
+                        SqlCommand command1 = new SqlCommand("UPDATE Accounts SET ACC_NAME = '" + name + "', ACC_PWD = '" + newpwd + "' WHERE ACC_USERNAME = '" + username + "'", ClsDatabase.con);
                         command1.ExecuteNonQuery();
                         MessageBox.Show("Thay đổi mật khẩu thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClsDatabase.CloseConnection();
@@ -65,7 +67,9 @@ namespace GroupPJ
             {
                 MessageBox.Show("Mật khẩu mới không trùng khớp", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+          
         }
 
     }
+    
 }

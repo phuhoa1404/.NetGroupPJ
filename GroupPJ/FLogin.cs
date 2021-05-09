@@ -43,6 +43,7 @@ namespace GroupPJ
             {
                 string tk = txtUsername.Text;
                 string ten = "";
+                string tenhienthi = "";
                 String mk = txtPwd.Text;
                 String sql = "SELECT * FROM Accounts WHERE ACC_USERNAME = '" + tk + "' and ACC_PWD = '" + mk + "'";
                 SqlCommand com = new SqlCommand(sql, ClsDatabase.con);
@@ -51,8 +52,9 @@ namespace GroupPJ
                 {
                     ten = reader.GetString(0);
                     int type = reader.GetInt32(2);
+                    tenhienthi = reader.GetString(3);
                     MessageBox.Show("Đăng nhập thành công !!", "Đăng nhập", MessageBoxButtons.OK);
-                    FManager fManager = new FManager(ten, type);
+                    FManager fManager = new FManager(ten, type, tenhienthi);
                     fManager.Visible = true;
                     this.Visible = false;
                 }

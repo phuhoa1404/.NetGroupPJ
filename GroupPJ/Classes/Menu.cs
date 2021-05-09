@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GroupPJ.Classes
 {
-    class Menu
+    public class Menu
     {
         public Menu(string drinkName, int count, float price, float totalPrice = 0)
         {

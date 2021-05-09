@@ -18,13 +18,12 @@ namespace GroupPJ.PresentClasses
         }
         public int GetUncheckBillIDByTableID(int idTable)
         {
-            List<Bill> bills = new List<Bill>();
             ClsDatabase.OpenConnection();
             SqlCommand command = new SqlCommand("SELECT * FROM Bill WHERE ID_TABLE = " + idTable + " AND BILL_STATUS = 0", ClsDatabase.con);
             SqlDataReader rd = command.ExecuteReader();
-            while (rd.Read())
+            if (rd.Read())
             {
-                Bill bill = new Bill(rd.GetInt32(0),rd.GetDateTime(1), rd.GetDateTime(2), rd.GetInt32(3), rd.GetInt32(4) );
+                Bill bill = new Bill(rd.GetInt32(0), rd.GetDateTime(1), rd.GetDateTime(2), rd.GetInt32(3), rd.GetInt32(4));
                 return bill.Id;
             }
             return -1;
@@ -34,7 +33,7 @@ namespace GroupPJ.PresentClasses
             try
             {
                 ClsDatabase.OpenConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO Bill (DATE_CHECKIN, DATE CHECKOUT, ID_TABLE, BILL_STATUS) VALUES (GETDATE(), NULL, '" + id + "', 0)", ClsDatabase.con);
+                SqlCommand command = new SqlCommand("INSERT INTO Bill (DATE_CHECKIN, DATE_CHECKOUT, ID_TABLE, BILL_STATUS) VALUES (GETDATE(), '', '" + id + "', 0)", ClsDatabase.con);
                 command.ExecuteNonQuery();
                 ClsDatabase.CloseConnection();
             }
@@ -42,21 +41,28 @@ namespace GroupPJ.PresentClasses
             {
             }
         }
+        public void CheckOut(int idBill, float totalPrice)
+        {
+            ClsDatabase.OpenConnection();
+            string update = "UPDATE Bill SET BILL_STATUS = 1, DATE_CHECKOUT = GETDATE(), TotalPrice = "+totalPrice+" WHERE ID = " + idBill;
+            SqlCommand command = new SqlCommand(update, ClsDatabase.con);
+            command.ExecuteNonQuery();
+            ClsDatabase.CloseConnection();
+        }
         public int GetMaxIDBill()
         {
             try
             {
-                int id;
                 ClsDatabase.OpenConnection();
-                SqlCommand command = new SqlCommand("SELECT MAX(id) FROM dbo.Bill");
-                SqlDataReader rd = command.ExecuteReader();
-                id =(int) rd.GetInt32(0);
+                SqlCommand command = new SqlCommand("SELECT MAX(id) FROM Bill", ClsDatabase.con);
+                int id = Convert.ToInt32(command.ExecuteScalar());
+                ClsDatabase.CloseConnection();
                 return id;
             }
             catch
             {
                 return 1;
-            }
+            } 
         }
     }
 }

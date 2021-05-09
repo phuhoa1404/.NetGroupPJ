@@ -12,7 +12,7 @@ namespace GroupPJ.Classes
         {
             this.ID = id;
             this.BillID = billID;
-            this.FoodID = foodID;
+            this.DrinkID = drinkID;
             this.Count = count;
         }
 
@@ -24,12 +24,12 @@ namespace GroupPJ.Classes
             set { count = value; }
         }
 
-        private int foodID;
+        private int drinkID;
 
-        public int FoodID
+        public int DrinkID
         {
-            get { return foodID; }
-            set { foodID = value; }
+            get { return drinkID; }
+            set { drinkID = value; }
         }
 
         private int billID;
